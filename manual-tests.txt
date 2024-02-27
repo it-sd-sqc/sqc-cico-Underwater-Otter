@@ -70,4 +70,8 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 ## Expected results
 * Should only display numeric characters
 
-
+# Module 5: Button to skip timeout
+## Test steps
+1. Build and run CiCo.
+2. Enter 00000000 into the field.
+3. Click the 'Done' button.

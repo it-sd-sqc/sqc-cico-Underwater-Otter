@@ -289,6 +289,14 @@ public class Main {
     labelState.setForeground(Color.magenta);
     panelStatus.add(labelState);
 
+    // Module 5 ticket: Add done button
+    JButton doneButton = new JButton("Done");
+    doneButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+    doneButton.setForeground(Color.BLACK);
+    doneButton.setBackground(Color.lightGray);
+    doneButton.addActionListener(e -> Main.doneProcessing());
+    panelStatus.add(doneButton);
+
     panelStatus.add(Box.createVerticalGlue());
 
     // Error panel ////////////////////////////////////////////////////////////
