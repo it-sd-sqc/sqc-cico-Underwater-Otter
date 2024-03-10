@@ -75,3 +75,12 @@ Use `./build.sh` to build CiCo and `./run.sh` to run it if using the command lin
 1. Build and run CiCo.
 2. Enter 00000000 into the field.
 3. Click the 'Done' button.
+
+# Module 6: Remove need for 'Update' button
+
+## Test steps
+1. Build and run CiCo
+2. Enter 00000000
+
+## Expected results
+* After the eighth '0' is entered, status panel should appear

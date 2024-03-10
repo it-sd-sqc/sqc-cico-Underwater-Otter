@@ -39,10 +39,15 @@ public class Main {
 
     @Override
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
-        throws BadLocationException
+            throws BadLocationException
     {
       if (fb.getDocument() != null && stringToAdd.matches("^[0-9]")) {
-        super.insertString(fb, offset, stringToAdd, attr);
+        if (fb.getDocument().getLength() + stringToAdd.length() < MAX_LENGTH) {
+          super.insertString(fb, offset, stringToAdd, attr);
+        } else {
+          super.insertString(fb, offset, stringToAdd, attr);
+          Main.processCard();
+        }
       }
       else {
         Toolkit.getDefaultToolkit().beep();
@@ -51,16 +56,22 @@ public class Main {
 
     @Override
     public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr)
-        throws BadLocationException
+            throws BadLocationException
     {
-      if (fb.getDocument() != null && stringToAdd.matches("^[0-9]")) {
-        super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
+      if (fb.getDocument() != null && stringToAdd.matches("^[0-9]") ) {
+        if (fb.getDocument().getLength() + stringToAdd.length() < MAX_LENGTH) {
+          super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
+        } else {
+          super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
+          Main.processCard();
+        }
       }
       else {
         Toolkit.getDefaultToolkit().beep();
       }
     }
   }
+
 
   // Lookup the card information after button press ///////////////////////////
   public static class Update implements ActionListener {
@@ -259,12 +270,6 @@ public class Main {
     fieldNumber.setBackground(Color.green);
     fieldNumber.setForeground(Color.magenta);
     panelMain.add(fieldNumber);
-
-    JButton updateButton = new JButton("Update");
-    updateButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-    updateButton.addActionListener(new Update());
-    updateButton.setForeground(Color.green);
-    panelMain.add(updateButton);
 
     panelMain.add(Box.createVerticalGlue());
 
